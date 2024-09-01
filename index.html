@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>National Parks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <style>
+      #card:hover {
+    box-shadow: 0 0 30px 0 #000000aa;
+    transform: scale(1.015);
+
+      #img{
+      box-shadow: 0 0 30px 0 #000000aa;
+      transform: scale(1.015);
+      filter: brightness(1.3);
+      ::before{
+      top: -100%;
+      left: 200%;
+      }
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+  </style>
+  <body>
+
+    <!-- navbar-->
+   <section>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary ">
+            <div class="container-fluid bg-black">
+              <img
+                src="image/logo.jpg"
+                class="img-fluid rounded-top"
+                alt=""
+                style="width: 4rem;"
+              />
+              
+              <a class="navbar-brand text-info" href="index.html">NATIONAL PARK</a>
+              <button class="navbar-toggler bg-info" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Category
+                    </a>
+                    <ul class="dropdown-menu bg-dark">
+                      <li><a class="dropdown-item text-info" href="category_national_park.html">NATIONAL PARKS</a></li>
+                      <li><hr class="dropdown-divider bg-info"></li>
+                      <li><a class="dropdown-item text-info " href="category.html">Animals</a></li>
+                      <li><a class="dropdown-item text-info" href="category_birds.html">Birds</a></li>
+                    </ul>
+                    <li class="nav-item">
+                      <a class="nav-link active text-light" aria-current="page" href="about_us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-light" href="login.html">Login</a>
+                    </li>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class=" form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </section>
+
+    <!-- navbar end-->
+
+    <!-- carousel -->
+    <section>
+      <div class="container-fluid">
+        <div id="carouselExampleCaptions" class="carousel slide">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="image/carousel.jpg" class="d-block w-100" alt="..." style="height: 36rem;">
+            </div>
+            <div class="carousel-item">
+              <img src="image/panda.jpg" class="d-block w-100" alt="..." style="height: 36rem;">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Welcome To our Website </h5>
+                <p>A park is a reminder that the world is filled with small wonders, waiting to be discovered.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- carousel end  -->
+
+    <!-- main content 2 -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <h1 class="text-center bg-warning p-1 fw-bold">Famous National Parks</h1>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row" id="main_contect_row">
+        </div>
+      </div>
+          <script>
+            let main_contect = "";
+            fetch('main1.json')
+            .then(response => response.json())
+            .then(json =>{
+                for (const value of json){
+                  main_contect += `
+                  <div class="row border border-5 p-2">
+                  <div class="col-lg-5 p-2">
+            <img
+              src="${value.main_content_image}"
+              class="img-fluid rounded-top"
+              alt=""
+            />
+          </div>
+                  <div class="col-lg-7 my-auto">
+            <h1 style="text-decoration:rgb(8, 174, 240) underline">${value.main_content_title}</h1>
+            <p>${value.main_content_description.substr(0,450)}...</p>
+            <a href="detail.html?main_content_title=${value.main_content_title}&main_content_description=${value.main_content_description}&main_content_image=${value.main_content_image}&animal_detail_image=${value.animal_detail_image}&animal_detail_title=${value.animal_detail_title}&animal_detail_description=${value.animal_detail_description}&animal_detail_description_1=${value.animal_detail_description_1}&animal_detail_title_1=${value.animal_detail_title_1}&animal_detail_image_1=${value.animal_detail_image_1}&animal_detail_description_2=${value.animal_detail_description_2}&animal_detail_title_2=${value.animal_detail_title_2}&animal_detail_image_2=${value.animal_detail_image_2}&animal_detail_description_3=${value.animal_detail_description_3}&animal_detail_title_3=${value.animal_detail_title_3}&animal_detail_image_3=${value.animal_detail_image_3}&animal_detail_description_4=${value.animal_detail_description_4}&animal_detail_title_4=${value.animal_detail_title_4}&animal_detail_image_4=${value.animal_detail_image_4}" class="btn ">More Details</a>
+          </div>
+        </div>
+     `
+        }
+        document.getElementById("main_contect_row").innerHTML = main_contect
+
+    })
+        </script>
+    </section>
+    <!-- main content 2 end -->
+
+    <!-- heading -->
+    <section>
+        <div class="container-fluid">
+            <div class="row mt-3">
+                <div class="col-lg-3">
+                  <h2 style="text-decoration:underline brown"><b>Featured Stories</b></h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- heading end  -->
+
+    <!-- cards start -->
+    <section>
+        <div class="container-fluid">
+          <div class="row">
+            <h1 class="text-center bg-warning  p-1 fw-bold">The Animals</h1>
+          </div>
+        </div>
+        <div class="container">
+            <div class="row mb-5" id="card_row">
+            </div>
+        </div>
+        <script>
+            let card_generate = "";
+            fetch('main.json')
+            .then(response => response.json())
+            .then(json =>{
+                for (const value of json){
+                    card_generate += `
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card p-2 mb-1" id="card">
+            <img src="${value.card_image}" id="img" class="card-img-top" alt="..."style="height: 14rem; >
+             <div class="card-body" id="card-body" >
+              <h4 class="card-title" style="text-decoration:rgb(8, 174, 240) underline"> ${value.card_title}</h4>
+              <p class="card-text" >${value.card_description.substr(0,141)}...</p>
+              <a href="animal_detail.html?card_image=${value.card_image}&card_title=${value.card_title}&card_description=${value.card_description}" class="btn">More Details</a>
+            </div>
+        </div>
+    </div>
+     `
+        }
+        document.getElementById("card_row").innerHTML = card_generate
+
+    })
+        </script>
+    </section>
+    <!-- cards end -->
+
+    <!-- birds cards -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <h1 class="text-center bg-warning  p-1 fw-bold">The Birds</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row" id="birds_row">
+
+        </div>
+      </div>
+      <script>
+        let birds_card = "";
+        fetch('birds.json')
+        .then(response => response.json())
+        .then(json =>{
+            for (const value of json){
+              birds_card += `
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card p-2 mb-1" id="card">
+        <img src="${value.birds_card_image}" id="img" class="card-img-top" alt="..."style="height: 14rem;>
+         <div class="card-body">
+          <h4 class="card-title" style="text-decoration:rgb(8, 174, 240) underline"> ${value.birds_card_title}</h4>
+          <p class="card-text">${value.birds_card_description.substr(0,140)}...</p>
+          <a href="bird_detail.html?birds_card_image=${value.birds_card_image}&birds_card_title=${value.birds_card_title}&birds_card_description=${value.birds_card_description}" class="btn">More Details</a>
+        </div>
+    </div>
+</div>
+ `
+    }
+    document.getElementById("birds_row").innerHTML = birds_card
+
+})
+    </script>
+    </section>
+    <!-- birds cards end -->
+
+
+    <!-- divider -->
+    <div class="container-fluid">
+      <hr class="text-info">
+    </div>
+    <!-- divider end -->
+
+
+     <!-- feedback -->
+     <section>
+      <div class="container-fluid">
+       <div class="row">
+           <div class="col-lg-12 col-md-12 col-sm-12">
+               <div class="testbox">
+                   <form action="/" id="form">
+                     <p id="h1" style="text-decoration:#F3D153 underline; font-weight: 500; font-size: 35px">Feedback</p>
+                     <p id="h4">Name</p>
+                     <input placeholder="Enter your full name" type="text" class="input">
+                     <p id="h4">Email<span>*</span></p>
+                     <input placeholder="Enter your email" type="text" class="input">
+                     <p id="h4">What is your overall impression?<span>*</span></p>
+                     <table>
+                       <tbody><tr>
+                         <th class="first-col"></th>
+                         <th>Very Satisfied</th>
+                         <th>Satisfied</th>
+                         <th>Unsatisfied</th>
+                         <th>Very Unsatisfied</th>
+                       </tr>
+                       <tr>
+                         <td class="first-col">Professional</td>
+                         <td><input name="point#2" value="none" type="radio"></td>
+                         <td><input name="point#2" value="none" type="radio"></td>
+                         <td><input name="point#2" value="none" type="radio"></td>
+                         <td><input name="point#2" value="none" type="radio"></td>
+                       </tr>
+                     </tbody></table>
+                     <p id="h4">Feel free to add any other comments or suggestions:</p>
+                     <textarea rows="5"></textarea>
+                     <div class="btn-block">
+                       <button href="/" type="submit" id="button">Send Feedback</button>
+                     </div>
+                   </form>
+                 </div>
+           </div>
+       </div>
+      </div>
+   </section>
+   <!-- feedback end -->
+
+
+    <!-- footer -->
+    <section>
+      <div class="container-fluid bg-black text-center mt-5">
+        <div class="row" style="height: 19rem;">
+          <div class="col-lg-3 my-auto">
+            <h5 class="text-light"><i class="bi bi-c-circle-fill"></i>2024 NATIONAL PARK</h5>
+          </div>
+          <div class="col-lg-6">
+            <img
+              src="image/logo.jpg"
+              class="img-fluid rounded-top"
+              alt=""
+              
+            />
+          </div>
+          <div class="col-lg-3 my-auto" id="icon-style">
+            <h1><a class="facebook" href="https://www.facebook.com/search/top?q=national%20park%20service"><i class="bi bi-facebook"></i></a>
+              <a class="instagram" href="https://www.instagram.com/nationalparkservice/"><i class="bi bi-instagram"></i></a>
+              <a class="whatsapp" href=""><i class="bi bi-whatsapp"></i></a>
+              <a class="twitter" href="https://twitter.com/NatlParkService"><i class="bi bi-twitter"></i></a></h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- footer end -->
+
+
+<!-- top button -->
+    
+<section>
+  <style>
+    /* Styles for the scroll-up button */
+    #scrollUpBtn {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        font-size: 18px;
+        background-color: #0a0a0a;
+        color: #fffefe;
+        border: none;
+        border-radius: 50px;
+        padding: 5px 13px;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    
+    #scrollUpBtn:hover {
+        opacity: 0.9;
+        border: 6px solid #53cef3;
+        border-radius: 50px;
+    }
+</style>
+
+<button onclick="scrollToTop()" id="scrollUpBtn" title="Go to top">&#8679; </button>
+
+<script>
+    // Function to scroll to the top smoothly
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // Show or hide the scroll-up button based on scroll position
+    window.onscroll = function() {scrollFunction()};
+    
+    function scrollFunction() {
+        var scrollBtn = document.getElementById("scrollUpBtn");
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollBtn.style.display = "block";
+        } else {
+            scrollBtn.style.display = "none";
+        }
+    }
+</script>
+</section>
+
+<!-- top button end-->
+
+   
+
+
+    
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
